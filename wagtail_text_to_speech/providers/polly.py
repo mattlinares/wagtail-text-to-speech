@@ -45,13 +45,17 @@ class Polly(AbstractProvider):
             # number of parallel connections. Here we are using contextlib.closing to
             # ensure the close method of the stream object will be called automatically
             # at the end of the with statement's scope.
+                import ipdb; ipdb.set_trace()
                 with closing(response["AudioStream"]) as stream:
-                    output = os.path.join(settings.MEDIA_ROOT, "speech.mp3")
+                    file_name = title.replace(' ', '_')
+                    output = os.path.join(settings.MEDIA_ROOT, file_name)
                     try:
                         with open(output, "wb") as file:
                             file.write(stream.read())
                         # Save mp3 as Wagtail document
-                        audio_document = Document.objects.create(title=title, file=output)
+                        from wagtail.core.models import Collection
+                        audio_document_collection = Collection.objects.get(name='Article synthesized audio')
+                        audio_document = Document.objects.create(title=title, file=output, collection=audio_document_collection)
                     except IOError as error:
                         # Could not write to file, exit gracefully
                         print(error)
