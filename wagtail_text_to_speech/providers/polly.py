@@ -45,7 +45,6 @@ class Polly(AbstractProvider):
             # number of parallel connections. Here we are using contextlib.closing to
             # ensure the close method of the stream object will be called automatically
             # at the end of the with statement's scope.
-                import ipdb; ipdb.set_trace()
                 with closing(response["AudioStream"]) as stream:
                     file_name = title.replace(' ', '_')
                     output = os.path.join(settings.MEDIA_ROOT, file_name)
