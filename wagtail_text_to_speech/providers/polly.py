@@ -12,7 +12,6 @@ from wagtail.documents.models import Document
 
 from wagtail_text_to_speech import app_settings
 from wagtail_text_to_speech.providers import AbstractProvider, DescriptionResult
-from wagtail_text_to_speech.utils import get_image_data, get_local_image_data
 
 
 class Polly(AbstractProvider):
