@@ -1,0 +1,11 @@
+# Docker config
+web.env
+
+# Django
+media
+static/*
+!static/.gitkeep
+
+# Test package
+wagtail_text_to_speech
+

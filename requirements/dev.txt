@@ -1,0 +1,4 @@
+-r tests.txt
+
+pypandoc==1.5
+twine
